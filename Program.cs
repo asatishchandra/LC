@@ -67,7 +67,33 @@ namespace LC
             //Sorting.FindUnsortedSubarray(new int[] { 2,1 });
             //Graphs.NumIslands(new char[][] { new char[] { '1','1','1','1','0' }, new char[] { '1', '1', '0', '1', '0' }, new char[] { '1', '1', '0', '0', '0' }, new char[] { '0', '0', '0', '0', '0' } });
             //Strings.decodeString(3, "mnes__ya_____mi");
-            Strings.decodeString(2, "hlowrd_el_ol");
+            //Strings.decodeString(2, "hlowrd_el_ol");
+            //SlidingWindow.MaxSubArrayLen(new int[] { -2, -1, 2, 1 }, 1);
+            //SlidingWindow.find_top_k_frequent_elements(new List<int> { 1, 2, 1, 2, 3, 1 }, 1);
+            //SlidingWindow.subarraySum_contains(new int[] { 1, 3, 5, 23, 2 }, 7);
+            //BitManipulation.GetSum(10, 2);
+            //BitManipulation.LargestIsland(new int[][] { new int[] { 0, 0 }, new int[] { 0, 1 } });
+            //SlidingWindow.CountZeroSumSlices(new int[] { 2, -2, 3, 0, 4, -7 });
+            //SlidingWindow.ValidPalindrome("abc");
+            SubarraySum(new int[] { 1, 1, 1 }, 2);
+        }
+
+        public static int SubarraySum(int[] nums, int k)
+        {
+            int count = 0, sum = 0;
+            Dictionary<int, int> map = new Dictionary<int, int>();
+            map.Add(0, 1);
+            for (int i = 0; i < nums.Length; i++)
+            {
+                sum += nums[i];
+                Console.WriteLine($"sum: {sum}");
+                if (map.ContainsKey(sum - k))
+                    count += map[sum - k];
+                if (!map.ContainsKey(sum))
+                    map.Add(sum, 0);
+                map[sum]++;
+            }
+            return count;
         }
 
         public static int GetEvenCount(int[] nums)
